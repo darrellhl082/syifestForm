@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Syifest Form</title>
+</head>
+
+<body>
+    <div class="container mt-5 ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form name="submit-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+
+                    </div>
+                    <div class=" mb-3">
+                        <label for="school" class="form-label">School</label>
+                        <input type="text" class="form-control" id="school" name="school" required>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="competition" aria-label="Default select example" required>
+                            <option selected>Open this select menu</option>
+                            <option value="Futsal">Futsal</option>
+                            <option value="Basket">Basket</option>
+                            <option value="Badminton">Badminton</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="script.js"></script>
+
+
+    <script>
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbwOP4IrPlKvgVNCYjK_6hdNcFv1w5ABkICbMjaneflmA14Z2OFGciAtCx61NtwHzNGe5A/exec'
+        const form = document.forms['submit-form']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            confirm("Confirm");
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => {
+                    console.log('Success!', response);
+                    alert("Succes");
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+</body>
+
+</html>
